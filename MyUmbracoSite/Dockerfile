@@ -6,7 +6,10 @@ RUN dotnet publish -c Release -o /out
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /out .
-RUN mkdir -p wwwroot/media
+
+# Explicitly ensure writable directories exist with correct permissions
+RUN mkdir -p wwwroot/media App_Data && chmod -R 755 wwwroot App_Data
+
 ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80
 ENTRYPOINT ["dotnet", "MyUmbracoSite.dll"]
