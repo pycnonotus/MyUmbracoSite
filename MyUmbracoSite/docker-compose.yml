@@ -17,6 +17,7 @@ services:
       - ./app_data:/app/App_Data
       - ./media:/app/wwwroot/media
       - /etc/letsencrypt/live/pycnonotus.dev/fullchain.pem:/https-certs/fullchain.pem:ro
+      - ./App_Plugins:/app/App_Plugins
       - /etc/letsencrypt/live/pycnonotus.dev/privkey.pem:/https-certs/privkey.pem:ro
       - /etc/letsencrypt/archive/pycnonotus.dev:/cert-archive:ro
       - /etc/letsencrypt/renewal:/cert-renewal:ro
