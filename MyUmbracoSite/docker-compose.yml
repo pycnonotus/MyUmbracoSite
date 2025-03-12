@@ -4,7 +4,6 @@ services:
     ports:
       - "80:80"
     environment:
-      ConnectionStrings__umbracoDbDSN: "Server=db;Database=UmbracoDb;User=sa;Password=YourStrong!Pass123;TrustServerCertificate=True;"
       ASPNETCORE_ENVIRONMENT: "Production"
     depends_on:
       - db
