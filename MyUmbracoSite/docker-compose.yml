@@ -1,15 +1,22 @@
+version: '3.8'
+
 services:
   umbraco:
     build: .
     ports:
       - "80:80"
+      - "443:443"
     environment:
       ASPNETCORE_ENVIRONMENT: "Production"
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      ASPNETCORE_Kestrel__Certificates__Default__Path: "/https-certs/fullchain.pem"
+      ASPNETCORE_Kestrel__Certificates__Default__KeyPath: "/https-certs/privkey.pem"
     depends_on:
       - db
     volumes:
       - ./app_data:/app/App_Data
       - ./media:/app/wwwroot/media
+      - /etc/letsencrypt/live/pycnonotus.dev:/https-certs:ro
 
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
