@@ -1,21 +1,26 @@
-version: '3.8'
-
 services:
   umbraco:
     build: .
     ports:
       - "80:80"
     environment:
-      # Database connection settings for Umbraco
-      ConnectionStrings__umbracoDbDSN: "Server=db;Database=UmbracoDb;User=sa;Password=AssYourStrong!Pass123;TrustServerCertificate=True;"
+      ConnectionStrings__umbracoDbDSN: "Server=db;Database=UmbracoDb;User=sa;Password=YourStrong!Pass123;TrustServerCertificate=True;"
       ASPNETCORE_ENVIRONMENT: "Production"
     depends_on:
       - db
+    volumes:
+      - ./app_data:/app/App_Data
+      - ./media:/app/wwwroot/media
 
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
       ACCEPT_EULA: "Y"
-      SA_PASSWORD: "AssYourStrong!Pass123"
+      SA_PASSWORD: "YourStrong!Pass123"
     ports:
       - "1433:1433"
+    volumes:
+      - dbdata:/var/opt/mssql
+
+volumes:
+  dbdata:
