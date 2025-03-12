@@ -1,0 +1,12 @@
+{
+        "propertyEditors": [
+        {
+        "alias": "CustomEditors.ConditionalText",
+        "name": "Conditional Text Field",
+        "editor": {
+        "view": "/App_Plugins/CustomEditors/conditional-text-editor.html"
+        },
+        "isParameterEditor": false
+        }
+        ]
+        }
