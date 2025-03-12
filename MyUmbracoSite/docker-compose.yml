@@ -16,7 +16,10 @@ services:
     volumes:
       - ./app_data:/app/App_Data
       - ./media:/app/wwwroot/media
-      - /etc/letsencrypt/live/pycnonotus.dev:/https-certs:ro
+      - /etc/letsencrypt/live/pycnonotus.dev/fullchain.pem:/https-certs/fullchain.pem:ro
+      - /etc/letsencrypt/live/pycnonotus.dev/privkey.pem:/https-certs/privkey.pem:ro
+      - /etc/letsencrypt/archive/pycnonotus.dev:/cert-archive:ro
+      - /etc/letsencrypt/renewal:/cert-renewal:ro
 
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
