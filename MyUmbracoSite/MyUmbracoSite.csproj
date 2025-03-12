@@ -17,8 +17,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="App_Plugins\CustomEditors\conditional-text-editor.html" />
-    <Content Include="App_Plugins\CustomEditors\package.manifest" />
+    <Content Include="App_Plugins\CustomEditors\conditional-text-editor.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Plugins\CustomEditors\package.manifest">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <PropertyGroup>
