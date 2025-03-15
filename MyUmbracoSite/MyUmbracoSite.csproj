@@ -17,13 +17,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="App_Plugins\CustomEditors\conditional-text-editor.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="App_Plugins\CustomEditors\package.manifest">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <StaticWebAssetEndpoint Remove="App_Plugins\Umbraco.BlockGridEditor.DefaultCustomViews\umbBlockGridDemoHeadlineBlock.8e5paz87xj.html" />
+    <StaticWebAssetEndpoint Remove="App_Plugins\Umbraco.BlockGridEditor.DefaultCustomViews\umbBlockGridDemoHeadlineBlock.html" />
+    <StaticWebAssetEndpoint Remove="App_Plugins\Umbraco.BlockGridEditor.DefaultCustomViews\umbBlockGridDemoImageBlock.html" />
+    <StaticWebAssetEndpoint Remove="App_Plugins\Umbraco.BlockGridEditor.DefaultCustomViews\umbBlockGridDemoImageBlock.mkhpzbamkt.html" />
+    <StaticWebAssetEndpoint Remove="App_Plugins\Umbraco.BlockGridEditor.DefaultCustomViews\umbBlockGridDemoRichTextBlock.html" />
+    <StaticWebAssetEndpoint Remove="App_Plugins\Umbraco.BlockGridEditor.DefaultCustomViews\umbBlockGridDemoRichTextBlock.thqhshp20y.html" />
+    <StaticWebAssetEndpoint Remove="App_Plugins\Umbraco.BlockGridEditor.DefaultCustomViews\umbBlockGridDemoTwoColumnLayoutBlock.duxb7paw18.html" />
+    <StaticWebAssetEndpoint Remove="App_Plugins\Umbraco.BlockGridEditor.DefaultCustomViews\umbBlockGridDemoTwoColumnLayoutBlock.html" />
   </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\App_Plugins\ButtonEditor\buttonEditor.controller.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\App_Plugins\ButtonEditor\buttonEditor.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\App_Plugins\ButtonEditor\package.manifest" />
+    <_ContentIncludedByDefault Remove="wwwroot\App_Plugins\ButtonEditor\src\suggestions-property-editor-ui.element.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="App_Plugins\ButtonEditor\button-editor.js" />
+    <Content Include="App_Plugins\ButtonEditor\umbraco-package.json" />
+  </ItemGroup>
+
+
+
+
 
   <PropertyGroup>
     <!-- Razor files are needed for the backoffice to work correctly -->
