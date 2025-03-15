@@ -13,7 +13,7 @@
         "label": "Button Editor",
         "icon": "icon-list",
         "group": "common",
-        "propertyEditorSchemaAlias": "Umb.Json"
+        "propertyEditorSchemaAlias": "Umbraco.Plain.Json"
       }
     }
   ]

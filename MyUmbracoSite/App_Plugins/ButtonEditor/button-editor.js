@@ -1,69 +1,126 @@
-import { css as p, property as i, customElement as c, LitElement as h, html as a } from "@umbraco-cms/backoffice/external/lit";
-var b = Object.defineProperty, x = Object.getOwnPropertyDescriptor, s = (e, n, d, u) => {
-  for (var t = u > 1 ? void 0 : u ? x(n, d) : n, l = e.length - 1, r; l >= 0; l--)
-    (r = e[l]) && (t = (u ? r(n, d, t) : r(t)) || t);
-  return u && t && b(n, d, t), t;
+import { css as d, property as a, customElement as c, LitElement as h, html as b } from "@umbraco-cms/backoffice/external/lit";
+import { UmbPropertyValueChangeEvent as p } from "@umbraco-cms/backoffice/property-editor";
+var g = Object.defineProperty, f = Object.getOwnPropertyDescriptor, l = (t, e, n, i) => {
+  for (var o = i > 1 ? void 0 : i ? f(e, n) : e, r = t.length - 1, u; r >= 0; r--)
+    (u = t[r]) && (o = (i ? u(e, n, o) : u(o)) || o);
+  return i && o && g(e, n, o), o;
 };
-let o = class extends h {
+let s = class extends h {
   constructor() {
-    super(...arguments), this.addButton = !1, this.buttonText = "", this.selectedContentItem = null;
+    super(...arguments), this._value = "", this.buttonEnabled = !1, this.buttonText = "", this.selectedContent = null;
+  }
+  get value() {
+    return this._value;
+  }
+  set value(t) {
+    const e = this._value;
+    typeof t != "string" ? this._value = JSON.stringify(t) : this._value = t;
+    try {
+      const n = typeof t == "string" ? JSON.parse(t || "{}") : t || {};
+      this.buttonEnabled = !!n.buttonEnabled, this.buttonText = n.buttonText || "", this.selectedContent = n.selectedContent || null;
+    } catch (n) {
+      console.error("Error parsing value:", n);
+    }
+    this.requestUpdate("value", e);
   }
   render() {
-    return a`
-      <!-- Checkbox: Ask if a button should be added -->
-      <uui-checkbox 
-        id="add-button-checkbox" 
-        label="Add Button?" 
-        .checked=${this.addButton}
-        @change=${this._onAddButtonChanged}>
-      </uui-checkbox>
+    return b`
+            <!-- Checkbox to enable/disable button settings -->
+            <div class="form-field">
+                <label for="button-toggle">Button Enabled</label>
+                <uui-checkbox
+                        id="button-toggle"
+                        .checked=${this.buttonEnabled}
+                        @change=${this._onCheckboxChange}>
+                </uui-checkbox>
+            </div>
 
-      <!-- Conditionally show the text input and content picker -->
-      ${this.addButton ? a`
-        <br />
-        <label>Button Text</label>
-        <uui-input 
-          id="button-text" 
-          label="Button Text" 
-          .value=${this.buttonText}
-          @input=${this._onButtonTextInput}>
-        </uui-input>
-        <label>Content Picker</label>
-
-    
-      ` : ""}
-    `;
+            <!-- Render text input and content picker only if the button is enabled -->
+            ${this.buttonEnabled ? b`
+                        <div class="form-field">
+                            <label for="button-text">
+                                Button Text <span class="required">*</span>
+                            </label>
+                            <uui-input
+                                    id="button-text"
+                                    .value=${this.buttonText}
+                                    @input=${this._onTextInput}
+                                    required>
+                            </uui-input>
+                        </div>
+                        <div class="form-field">
+                            <label>
+                                Button Content <span class="required">*</span>
+                            </label>
+                            <div class="flex-container">
+                                <umb-input-content
+                                        .min=${1}
+                                        .max=${1}
+                                        .selection=${this.selectedContent}
+                                        @change=${this._onContentChange}
+                                        required>
+                                </umb-input-content>
+                            </div>
+                        </div>
+                    ` : ""}
+        `;
   }
-  _onAddButtonChanged(e) {
-    const n = e.target;
-    this.addButton = n.checked, this.addButton || (this.buttonText = "", this.selectedContentItem = null);
+  _onCheckboxChange(t) {
+    const e = t.target;
+    this.buttonEnabled = e.checked, this._updateValue(), console.log("Button enabled:", this.buttonEnabled);
   }
-  _onButtonTextInput(e) {
-    this.buttonText = e.target.value;
+  _onTextInput(t) {
+    const e = t.target;
+    this.buttonText = e.value, this._updateValue(), console.log("Button text:", this.buttonText);
+  }
+  // Handler for the content picker's change event.
+  _onContentChange(t) {
+    this.selectedContent = t.target.selection, this._updateValue(), console.log("Selected content:", this.selectedContent);
+  }
+  // Serialize the current state and dispatch a change event.
+  _updateValue() {
+    const t = JSON.stringify({
+      buttonEnabled: this.buttonEnabled,
+      buttonText: this.buttonText,
+      selectedContent: this.selectedContent
+    });
+    this._value = t, this.dispatchEvent(new p());
   }
 };
-o.styles = [
-  p`
-      :host {
-        display: block;
-        margin: 10px;
-      }
-  
-    `
-];
-s([
-  i({ type: Boolean })
-], o.prototype, "addButton", 2);
-s([
-  i({ type: String })
-], o.prototype, "buttonText", 2);
-s([
-  i({ type: Object })
-], o.prototype, "selectedContentItem", 2);
-o = s([
+s.styles = d`
+        :host {
+            display: block;
+            padding: 1rem;
+            font-family: Arial, sans-serif;
+        }
+        .form-field {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .required {
+            color: red;
+        }
+    `;
+l([
+  a({ type: String })
+], s.prototype, "value", 1);
+l([
+  a({ type: Boolean })
+], s.prototype, "buttonEnabled", 2);
+l([
+  a({ type: String })
+], s.prototype, "buttonText", 2);
+l([
+  a({ type: Object })
+], s.prototype, "selectedContent", 2);
+s = l([
   c("my-button-property-editor-ui")
-], o);
+], s);
 export {
-  o as default
+  s as default
 };
 //# sourceMappingURL=button-editor.js.map
