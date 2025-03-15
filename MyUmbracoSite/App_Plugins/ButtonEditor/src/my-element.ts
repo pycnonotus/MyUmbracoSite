@@ -3,7 +3,7 @@ import { UmbPropertyEditorUiElement, UmbPropertyValueChangeEvent } from "@umbrac
 
 @customElement('my-button-property-editor-ui')
 export default class MyButtonPropertyEditorUIElement extends LitElement implements UmbPropertyEditorUiElement {
-    // Store the raw serialized value
+    // Internal storage for the serialized value
     private _value: string = '';
 
     @property({ type: String })
@@ -12,14 +12,12 @@ export default class MyButtonPropertyEditorUIElement extends LitElement implemen
     }
     public set value(newValue: string | object) {
         const oldValue = this._value;
-        // If newValue is not a string, serialize it.
         if (typeof newValue !== "string") {
             this._value = JSON.stringify(newValue);
         } else {
             this._value = newValue;
         }
         try {
-            // If newValue is a string, parse it; if it's already an object, use it directly.
             const data =
                 typeof newValue === "string"
                     ? JSON.parse(newValue || "{}")
@@ -43,24 +41,32 @@ export default class MyButtonPropertyEditorUIElement extends LitElement implemen
     @property({ type: Object })
     public selectedContent: any = null;
 
+    // Optional property to hold validation errors
+    @property({ type: Array })
+    private _validationErrors: string[] = [];
+
     static styles = css`
-        :host {
-            display: block;
-            padding: 1rem;
-            font-family: Arial, sans-serif;
-        }
-        .form-field {
-            margin-bottom: 1rem;
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-        .required {
-            color: red;
-        }
-    `;
+    :host {
+      display: block;
+      padding: 1rem;
+      font-family: Arial, sans-serif;
+    }
+    .form-field {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .required {
+      color: red;
+    }
+    .error-messages {
+      color: red;
+      margin-top: 0.5rem;
+    }
+  `;
 
     render() {
         return html`
@@ -74,7 +80,7 @@ export default class MyButtonPropertyEditorUIElement extends LitElement implemen
                 </uui-checkbox>
             </div>
 
-            <!-- Render text input and content picker only if the button is enabled -->
+            <!-- Render text input and content picker only if button is enabled -->
             ${this.buttonEnabled
                     ? html`
                         <div class="form-field">
@@ -104,6 +110,15 @@ export default class MyButtonPropertyEditorUIElement extends LitElement implemen
                         </div>
                     `
                     : ""}
+            ${this._validationErrors.length
+                    ? html`
+            <div class="error-messages">
+              ${this._validationErrors.map(
+                            (error) => html`<p>${error}</p>`
+                    )}
+            </div>
+          `
+                    : ""}
         `;
     }
 
@@ -121,12 +136,26 @@ export default class MyButtonPropertyEditorUIElement extends LitElement implemen
         console.log("Button text:", this.buttonText);
     }
 
-    // Handler for the content picker's change event.
     private _onContentChange(e: CustomEvent & { target: any }) {
-        // Assume the content picker exposes the selection via a property named `selection`
+        // Assume the picker exposes the selection in a property called 'selection'
         this.selectedContent = e.target.selection;
         this._updateValue();
         console.log("Selected content:", this.selectedContent);
+    }
+
+    // Validate the required fields. Returns true if valid, false otherwise.
+    public validate(): boolean {
+        this._validationErrors = [];
+        if (this.buttonEnabled) {
+            if (!this.buttonText || this.buttonText.trim() === "") {
+                this._validationErrors.push("Button text is required.");
+            }
+            if (!this.selectedContent) {
+                this._validationErrors.push("Content selection is required.");
+            }
+        }
+        this.requestUpdate();
+        return this._validationErrors.length === 0;
     }
 
     // Serialize the current state and dispatch a change event.
