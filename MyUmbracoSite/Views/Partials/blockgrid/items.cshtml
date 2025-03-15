@@ -1,7 +1,10 @@
-﻿@using Umbraco.Cms.Core.Models.Blocks
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<IEnumerable<BlockGridItem>>
+﻿@inherits UmbracoViewPage<IEnumerable<Umbraco.Cms.Core.Models.Blocks.BlockGridItem>>
 @{
-    if (Model?.Any() != true) { return; }
+    if (Model?.Any() != true)
+    {
+        return;
+    }
+
 }
 
 <div class="umb-block-grid__layout-container">
@@ -22,7 +25,7 @@
                 {
                     @await Html.PartialAsync(partialViewName, item)
                 }
-                catch (InvalidOperationException)
+                catch(InvalidOperationException)
                 {
                     <p>
                         <strong>Could not render component of type: @(item.Content.ContentType.Alias)</strong>
@@ -30,6 +33,7 @@
                         This likely happened because the partial view <em>@partialViewName</em> could not be found.
                     </p>
                 }
+
             }
         </div>
     }

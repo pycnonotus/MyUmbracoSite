@@ -6,8 +6,8 @@ export default defineConfig({
             entry: "src/my-element.ts", // your web component source file
             formats: ["es"],
         },
-        outDir: "../App_Plugins/ButtonEditor", // all compiled files will be placed here
-        emptyOutDir: true,
+        outDir: "./", // all compiled files will be placed here
+        emptyOutDir: false,
         sourcemap: true,
         rollupOptions: {
             external: [/^@umbraco/], // ignore the Umbraco Backoffice package in the build

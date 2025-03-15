@@ -2,7 +2,8 @@ import { LitElement, html, css, customElement, property } from "@umbraco-cms/bac
 import { UmbPropertyEditorUiElement } from "@umbraco-cms/backoffice/property-editor";
 // Explicitly import the content picker so that the custom element is registered:
 
-@customElement('my-suggestions-property-editor-ui')
+@customElement("my-button-property-editor-ui")
+
 export default class MySuggestionsPropertyEditorUIElement extends LitElement implements UmbPropertyEditorUiElement {
   @property({ type: Boolean })
   public addButton = false;
@@ -36,18 +37,7 @@ export default class MySuggestionsPropertyEditorUIElement extends LitElement imp
         </uui-input>
         <label>Content Picker</label>
 
-<umb-control-group label="Parent Node ID" description="Where the child nodes will be added">
-    <input type="text" class="umb-editor umb-textstring" ng-model="rootNodeId" required />
-</umb-control-group>
-<umb-date-time-picker> </<umb-date-time-picker>
-
-        <umb-content-picker
-          id="content-picker"
-          label="Select Content"
-          single-selection
-          .selectedItem=${this.selectedContentItem}
-          @change=${this._onContentPickerChange}>
-        </umb-content-picker>
+    
       ` : ""}
     `;
   }
@@ -76,14 +66,11 @@ export default class MySuggestionsPropertyEditorUIElement extends LitElement imp
     this.buttonText = (e.target as HTMLInputElement).value;
   }
 
-  private _onContentPickerChange(e: CustomEvent) {
-    // Assuming the content picker fires an event with a single selected item in e.detail.selectedItem
-    this.selectedContentItem = e.detail.selectedItem;
-  }
+  
 }
 
 declare global {
   interface HTMLElementTagNameMap {
-    'my-suggestions-property-editor-ui': MySuggestionsPropertyEditorUIElement;
+    'my-button-property-editor-ui': MySuggestionsPropertyEditorUIElement;
   }
 }

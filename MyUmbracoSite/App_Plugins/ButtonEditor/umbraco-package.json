@@ -1,21 +1,21 @@
 {
-    "$schema": "../../umbraco-package-schema.json",
-    "name": "My Dashboard",
-    "version": "0.1.0",
-    "extensions": [
-      {
-        "type": "propertyEditorUi",
-        "alias": "Mandel.PropertyEditorUi.ButtonEditor",
-        "name": "Button Editor",
-        "element": "/App_Plugins/ButtonEditor/button-editor.js",
-        "elementName": "my-button-property-editor-ui",
-        "meta": {
-          "label": "Button Editor",
-          "icon": "icon-list",
-          "group": "common",
-          "propertyEditorSchemaAlias": "Umb.Json"
-        }
+  "$schema": "../../umbraco-package-schema.json",
+  "name": "My Dashboard",
+  "version": "0.1.1",
+  "extensions": [
+    {
+      "type": "propertyEditorUi",
+      "alias": "Mandel.PropertyEditorUi.ButtonEditor",
+      "name": "Button Editor Property Editor",
+      "element": "/App_Plugins/ButtonEditor/button-editor.js",
+      "elementName": "my-button-property-editor-ui",
+      "meta": {
+        "label": "Button Editor",
+        "icon": "icon-list",
+        "group": "common",
+        "propertyEditorSchemaAlias": "Umb.Json"
       }
-    ]
-  }
+    }
+  ]
+}
   
