@@ -1,7 +1,7 @@
 {
   "$schema": "../../umbraco-package-schema.json",
-  "name": "My Dashboard",
-  "version": "0.1.1",
+  "name": "Button Editor",
+  "version": "0.1.2",
   "extensions": [
     {
       "type": "propertyEditorUi",
@@ -13,7 +13,7 @@
         "label": "Button Editor",
         "icon": "icon-list",
         "group": "common",
-        "propertyEditorSchemaAlias": "Umbraco.Plain.Json"
+        "propertyEditorSchemaAlias": "Mandel.PropertyEditorUi.ButtonEditor"
       }
     }
   ]

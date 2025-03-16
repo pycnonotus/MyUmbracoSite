@@ -31,6 +31,7 @@ export default class MyButtonPropertyEditorUIElement extends LitElement implemen
         this.requestUpdate("value", oldValue);
     }
 
+
     @property({ type: Boolean })
     public buttonEnabled = false;
 

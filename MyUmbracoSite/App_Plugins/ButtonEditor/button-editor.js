@@ -120,7 +120,7 @@ o.styles = h`
     }
   `;
 i([
-  r({ type: String })
+  r({ type: Object })
 ], o.prototype, "value", 1);
 i([
   r({ type: Boolean })
