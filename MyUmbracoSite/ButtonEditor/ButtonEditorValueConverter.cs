@@ -38,7 +38,7 @@ public class ButtonEditorValueConverter(
 
         if (buttonEditor is null) return null;
 
-        var guid = buttonEditor.SelectedContent.FirstOrDefault()?.Unique;
+        var guid = buttonEditor.SelectedContent?.FirstOrDefault()?.Unique;
         if (guid is null)
         {
             logger.LogWarning("ButtonEditor does not contain any content");
@@ -56,12 +56,12 @@ public class ButtonEditorValueConverter(
         return new ButtonEditorDto(buttonEditor.ButtonText, publishedContent.UrlSegment!);
     }
 
-    private bool TryExtract(object obj, out ButtonEditor? buttonEditor)
+    private bool TryExtract(object obj, out ButtonEditorContentSlim? buttonEditor)
     {
         buttonEditor = null;
         try
         {
-            var result = JsonSerializer.Deserialize<ButtonEditor>(obj.ToString()!, JsonSerializerOptions)!;
+            var result = JsonSerializer.Deserialize<ButtonEditorContentSlim>(obj.ToString()!, JsonSerializerOptions)!;
             if (result.ButtonEnabled) buttonEditor = result; // if the button is not enabled, we can just ignore it
 
             return true;
@@ -73,7 +73,7 @@ public class ButtonEditorValueConverter(
         }
     }
 
-    public record ButtonEditor(bool ButtonEnabled, string ButtonText, ICollection<SlimContent> SelectedContent);
+    public record ButtonEditorContentSlim(bool ButtonEnabled, string ButtonText, ICollection<SlimContent>? SelectedContent);
 
     public record SlimContent(Guid Unique);
 

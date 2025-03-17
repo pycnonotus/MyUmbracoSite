@@ -1,4 +1,11 @@
+
+using Umbraco.Cms.Core;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+
 
 builder.CreateUmbracoBuilder()
 	.AddBackOffice()
@@ -7,6 +14,11 @@ builder.CreateUmbracoBuilder()
 	.AddDeliveryApi()
 	.Build();
 
+builder.Services.AddControllers().AddJsonOptions(
+	options =>
+	{
+		options.JsonSerializerOptions.MaxDepth = 64;
+	});
 
 var app = builder.Build();
 
