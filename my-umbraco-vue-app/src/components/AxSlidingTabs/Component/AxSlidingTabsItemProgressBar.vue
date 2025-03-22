@@ -47,5 +47,6 @@ const props = defineProps<{
   background-color: #9D5726;
   border-radius: 999px;
   height: var(--progress);
+  transition: height 0.01s linear;
 }
 </style>
