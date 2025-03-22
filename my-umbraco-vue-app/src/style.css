@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tailwindcss/preflight";
 @theme {
     --color-wite: oklch(99.7% 0 0);
     --color-negev: #9D5726;
@@ -11,7 +10,6 @@
     background-color: var(--color-wite);
 }
 
-@tailwind utilities;
 @font-face {
     font-family: "SimplerPro";
     src: url("/src/assets/fonts/SimplerPro_HLAR-Regular.woff2") format("woff2"),
@@ -45,13 +43,13 @@ html {
 
 @keyframes rainbow {
     0% {
-        background-position: 0% 50%;
+        background-position: 0 50%;
     }
     50% {
         background-position: 100% 50%;
     }
     100% {
-        background-position: 0% 50%;
+        background-position: 0 50%;
     }
 }
 
