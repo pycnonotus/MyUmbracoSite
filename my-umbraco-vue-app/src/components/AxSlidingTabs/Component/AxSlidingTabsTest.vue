@@ -171,7 +171,7 @@ const data: Ref<IUmbracoData<TabsSliderProperties>> = ref({
 
 
 <template>
-  <AxSlidingTabs :tabsSlider="data"/>
+  <AxSlidingTabs :tabs-slider="data"/>
 
 </template>
 

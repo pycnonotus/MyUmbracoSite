@@ -6,8 +6,7 @@ import AxSlidingTabsItemNotActive from "./AxSlidingTabsItemNotActive.vue";
 import AxSlidingTabsItemProgressBar from "./AxSlidingTabsItemProgressBar.vue";
 
 const emit = defineEmits<{
-  (e: 'button-pressed'): void;
-  (e: 'title-pressed'): void;
+  (e: 'pressed'): void;
 }>();
 
 const props = defineProps<{
@@ -16,24 +15,18 @@ const props = defineProps<{
   item: TabItemProperties;
 }>();
 
-function onButtonPressed(e: Event) {
-  e.stopPropagation();
-  emit('button-pressed');
-}
 
-function onTitlePressed() {
-  console.log('onTitlePressed');
-  emit('title-pressed');
+function onPressed() {
+  emit('pressed');
 }
 </script>
 
 <template>
-  <div @click="onTitlePressed" class="flex gap-7 lg:flex-col">
+  <div @click="onPressed" class="flex gap-7 lg:flex-col">
     <!-- Progress Bar Container -->
     <div class="flex flex-col gap-2.5 items-center w-6 cursor-pointer lg:flex-row lg:w-full lg:h-12 lg:gap-6">
       <button
           v-if="props.isActive"
-          @click.stop="onButtonPressed"
           class="flex items-center justify-center w-6 h-6 lg:w-12 lg:h-12 !p-0 !m-0 border-0 bg-transparent appearance-none"
       >
         <img
