@@ -1,129 +1,132 @@
 @import "tailwindcss";
-
+@import "tailwindcss/preflight";
 @theme {
-  --color-wite: oklch(99.7% 0 0);
-  --font-serif: Masada, sans-serif;
+    --color-wite: oklch(99.7% 0 0);
+    --color-negev: #9D5726;
+    --font-serif: Masada, sans-serif;
 }
 
-#app{
+#app {
     flex-grow: 1;
+    background-color: var(--color-wite);
 }
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-@layer base {
-  @font-face {
+@tailwind utilities;
+@font-face {
     font-family: "SimplerPro";
-    src: url("~/assets/fonts/SimplerPro_HLAR-Regular.woff2") format("woff2"),
-    url("~/assets/fonts/SimplerPro_HLAR-Regular.woff") format("woff");
+    src: url("/src/assets/fonts/SimplerPro_HLAR-Regular.woff2") format("woff2"),
+    url("/src/assets/fonts/SimplerPro_HLAR-Regular.woff") format("woff");
     font-weight: 400;
     font-style: normal;
     font-display: swap;
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: "SimplerPro";
-    src: url("~/assets/fonts/SimplerPro_HLAR-Bold.woff2") format("woff2"),
-    url("~/assets/fonts/SimplerPro_HLAR-Bold.woff") format("woff");
+    src: url("/src/assets/fonts/SimplerPro_HLAR-Bold.woff2") format("woff2"),
+    url("/src/assets/fonts/SimplerPro_HLAR-Bold.woff") format("woff");
     font-weight: 700;
     font-style: normal;
     font-display: swap;
-  }
+}
 
-  @font-face {
+@font-face {
     font-family: "Masada";
-    src: url("~/assets/fonts/Masada-Medium.woff2") format("woff2"),
-    url("~/assets/fonts/Masada-Medium.woff") format("woff");
+    src: url("/src/assets/fonts/Masada-Medium.woff2") format("woff2"),
+    url("/src/assets/fonts/Masada-Medium.woff") format("woff");
     font-weight: 500;
     font-style: normal;
     font-display: swap;
-  }
-
-  html {
+}
+html {
     font-family: "SimplerPro", sans-serif;
-  }
 }
 
 
 @keyframes rainbow {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
+
 :root {
 
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
 
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+    color: #535bf2;
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-  background-size: 1400% 1400%; /* Adjusts the spread of the gradient for a smoother animation */
-  animation: rainbow 15s ease infinite;
-  width: 100%; /* Full width (optional) */
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+    background-size: 1400% 1400%; /* Adjusts the spread of the gradient for a smoother animation */
+    animation: rainbow 15s ease infinite;
+    width: 100%; /* Full width (optional) */
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+    font-size: 3.2em;
+    line-height: 1.1;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
+    border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+    outline: 4px auto -webkit-focus-ring-color;
 }
 
 .card {
-  padding: 2em;
+    padding: 2em;
 }
 
 
 @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    :root {
+        color: #213547;
+        background-color: #ffffff;
+    }
+
+    a:hover {
+        color: #747bff;
+    }
+
+    button {
+        background-color: #f9f9f9;
+    }
 }
