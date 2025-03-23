@@ -11,14 +11,17 @@ const props = defineProps<{
 <template>
   <div class="flex flex-col gap-2 w-full">
     <h3
-        class="text-[#04283E] text-right font-['SimplerPro',sans-serif]
-             font-bold leading-[110%] text-[18px] lg:text-[28px] lg:leading-[36px]"
+        :class="[
+            `text-[#04283E] text-right font-['SimplerPro',sans-serif] transition-opacity`,
+             ' font-bold leading-[110%] text-[18px] lg:text-[28px] lg:leading-[36px]',
+                     props.isActive ? 'opacity-100' : 'opacity-50'
+             ]"
     >
       {{ props.item.title }}
     </h3>
 
     <transition
-        v-if="props.isActive"
+        v-if=" props.isActive"
         appear
         enter-active-class="transition-opacity duration-700 ease-in-out"
         enter-from-class="opacity-0"
@@ -27,22 +30,22 @@ const props = defineProps<{
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
     >
-    <div>
-      <p
-          class="text-[#04283E] text-right font-['SimplerPro',sans-serif]
+      <div>
+        <p
+            class="text-[#04283E] text-right font-['SimplerPro',sans-serif]
                font-normal leading-[120%] text-[16px] lg:text-[28px]
                w-full"
-      >
-        {{ props.item.description }}
-      </p>
-      <a
-          :href="props.item.link[0].url"
-          class="text-[#04283E] text-right font-['SimplerPro',sans-serif]
+        >
+          {{ props.item.description }}
+        </p>
+        <a
+            :href="props.item.link[0].url"
+            class="!text-[#04283E] text-right font-['SimplerPro',sans-serif]
              font-bold leading-[110%] text-[18px] lg:text-[28px] lg:leading-[36px]"
-      >
-        {{ props.item.link[0].title }} &gt;
-      </a>
-    </div>
+        >
+          {{ props.item.link[0].title }} &gt;
+        </a>
+      </div>
     </transition>
   </div>
 </template>
