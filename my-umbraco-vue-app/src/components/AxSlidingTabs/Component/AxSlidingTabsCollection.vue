@@ -17,12 +17,12 @@ const props = defineProps < {
     <AxSlidingTabsItem
         v-for="(tab, index) in props.tabs"
         :key="index"
-        :isActive="activeItemIndex === index"
+        :isActive="props.activeItemIndex === index"
         :progress="progress"
         :item="tab.item"
-        :class="activeItemIndex === index
-                    ? 'flex-grow transition-[width] duration-300 ease-in-out'
-                    : 'flex-grow-0 flex-shrink-0 cursor-pointer'"
+        :class="props.activeItemIndex === index
+                    ? 'flex-grow-1'
+                    : 'flex-shrink-0'"
         @pressed="() => emit('changeIndex', index)"
     />
   </div>

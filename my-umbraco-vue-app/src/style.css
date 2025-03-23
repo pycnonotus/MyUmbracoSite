@@ -81,6 +81,8 @@ body {
     background-size: 1400% 1400%; /* Adjusts the spread of the gradient for a smoother animation */
     animation: rainbow 15s ease infinite;
     width: 100%; /* Full width (optional) */
+    align-items: flex-start;
+
 }
 
 h1 {

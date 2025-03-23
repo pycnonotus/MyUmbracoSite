@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import type { TabItemProperties } from "../Interfaces/IUmbracoData.ts";
-import AxSlidingTabsItemActive from "./AxSlidingTabsItemActive.vue";
-import AxSlidingTabsItemNotActive from "./AxSlidingTabsItemNotActive.vue";
+import AxSlidingTabsItemContent from "./AxSlidingTabsItemContent.vue";
 import AxSlidingTabsItemProgressBar from "./AxSlidingTabsItemProgressBar.vue";
 
 const emit = defineEmits<{
@@ -38,7 +37,6 @@ function onPressed() {
       </button>
       <AxSlidingTabsItemProgressBar :progress="props.isActive ? props.progress : 0" class="grow" />
     </div>
-    <AxSlidingTabsItemActive v-if="props.isActive" :item="props.item" />
-    <AxSlidingTabsItemNotActive v-else :title="props.item.title" />
+    <AxSlidingTabsItemContent :is-active="props.isActive" :item="props.item" />
   </div>
 </template>
