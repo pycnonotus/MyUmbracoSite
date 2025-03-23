@@ -27,24 +27,22 @@ const props = defineProps<{
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
     >
+    <div>
       <p
-          v-if="props.isActive"
           class="text-[#04283E] text-right font-['SimplerPro',sans-serif]
                font-normal leading-[120%] text-[16px] lg:text-[28px]
                w-full"
       >
         {{ props.item.description }}
       </p>
-    </transition>
-
-    <!-- Link always visible, same style as before -->
-    <a
-        v-if="props.isActive"
-        :href="props.item.link[0].url"
-        class="text-[#04283E] text-right font-['SimplerPro',sans-serif]
+      <a
+          :href="props.item.link[0].url"
+          class="text-[#04283E] text-right font-['SimplerPro',sans-serif]
              font-bold leading-[110%] text-[18px] lg:text-[28px] lg:leading-[36px]"
-    >
-      {{ props.item.link[0].title }} &gt;
-    </a>
+      >
+        {{ props.item.link[0].title }} &gt;
+      </a>
+    </div>
+    </transition>
   </div>
 </template>
