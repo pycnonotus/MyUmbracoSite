@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import AxSlidingTabsTest from "./components/AxSlidingTabs/Component/AxSlidingTabsTest.vue";
+import Tester from "./components/ax-about-mandel/component/Tester.vue";
 </script>
 
 <template>
-<AxSlidingTabsTest />
+<Tester />
 </template>
 
 <style scoped>

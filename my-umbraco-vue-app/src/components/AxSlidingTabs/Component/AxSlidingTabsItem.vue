@@ -22,7 +22,6 @@ function onPressed() {
 
 <template>
   <div @click="onPressed" class="flex gap-7 lg:flex-col">
-    <!-- Progress Bar Container -->
     <div class="flex flex-col gap-2.5 items-center w-6 cursor-pointer lg:flex-row lg:w-full lg:h-12 lg:gap-6">
       <button
           v-if="props.isActive"
